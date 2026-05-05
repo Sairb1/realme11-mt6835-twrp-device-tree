@@ -97,7 +97,7 @@ mkdir -p ~/twrp/device/realme
 cd ~/twrp/device/realme
 
 git clone https://github.com/Sairb1/realme11-mt6835-device-tree.git
-mv mt6835-dt ossi
+move dt to your sync
 
 cd ~/twrp
 source build/envsetup.sh
