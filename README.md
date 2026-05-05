@@ -110,14 +110,12 @@ mka vendorbootimage -j$(nproc)
 ---
 ### Credits
 Credits
-Device Tree Base: @notpiyushbro
-Developer: @suchit_7x
-Contributions: @imnotaino - sairb1
-Tester: @Zuhaan
+- Device Tree Base: @notpiyushbro and @HuTao77-Studio
+- Developer: @suchit_7x
+- Contributions: @imnotaino - sairb1
+- Tester: @Zuhaan
 
 ---
 Community
-
-Telegram: https://t.me/realme11x
-
+- Telegram: https://t.me/realme11x
 ---
