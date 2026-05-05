@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/realme/RE5C34
+DEVICE_PATH := device/realme/RE5C6CL1
 
 # Build Hack
 BUILD_BROKEN_DUP_RULES := true
@@ -36,7 +36,7 @@ ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
 # Assertation
-TARGET_OTA_ASSERT_DEVICE := RMX3783
+TARGET_OTA_ASSERT_DEVICE := RMX3780
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := k6835v1_64
@@ -147,7 +147,7 @@ TW_INCLUDE_LIBRESETPROP :=true
 TW_INCLUDE_REPACKTOOLS := true
 
 # TWRP Configuration
-TW_FRAMERATE := 60
+TW_FRAMERATE := 120
 TW_Y_OFFSET := 100
 TW_H_OFFSET := -100
 TW_THEME := portrait_hdpi
@@ -164,7 +164,7 @@ TW_INCLUDE_NTFS_3G := true
 TARGET_USES_MKE2FS := true
 TW_INCLUDE_FUSE_EXFAT := true
 TW_EXTRA_LANGUAGES := true
-TW_DEFAULT_LANGUAGE := zh_CN
+TW_DEFAULT_LANGUAGE := en
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_DEVICE_VERSION := 14.0.0115
+TW_DEVICE_VERSION := 14.0.0115-by-@imnotaino
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
