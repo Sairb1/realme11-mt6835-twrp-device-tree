@@ -17,12 +17,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Device specific configs.
-$(call inherit-product, device/realme/RE5C34/device.mk)
+$(call inherit-product, device/realme/RE5C6CL1/device.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := RE5C34
-PRODUCT_NAME := twrp_RE5C34
+PRODUCT_DEVICE := RE5C6CL1
+PRODUCT_NAME := twrp_RE5C6CL1
 PRODUCT_BRAND := realme
-PRODUCT_MODEL := RMX3783
+PRODUCT_MODEL := RMX3780
 PRODUCT_MANUFACTURER := realme
-PRODUCT_RELEASE_NAME := realme V50
+PRODUCT_RELEASE_NAME := realme 11
