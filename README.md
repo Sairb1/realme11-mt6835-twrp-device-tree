@@ -105,7 +105,6 @@ lunch RE5C6CL1_ossi-eng
 
 mka vendorbootimage -j$(nproc)
 
----
 ```
 ---
 ### Credits
