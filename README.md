@@ -104,3 +104,20 @@ source build/envsetup.sh
 lunch RE5C6CL1_ossi-eng
 
 mka vendorbootimage -j$(nproc)
+
+---
+```
+---
+### Credits
+Credits
+Device Tree Base: @notpiyushbro
+Developer: @suchit_7x
+Contributions: @imnotaino - sairb1
+Tester: @Zuhaan
+
+---
+Community
+
+Telegram: https://t.me/realme11x
+
+---
