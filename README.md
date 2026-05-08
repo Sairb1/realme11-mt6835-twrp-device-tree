@@ -9,7 +9,7 @@
 
 | Property | Value |
 |---|---|
-| Device | Realme 11 / 11x / Narzo 60X / C67 5G |
+| Device | Realme 11 / 11x / Narzo 60X / C67 5G / v50 / V50s |
 | SoC | MediaTek Dimensity 6100+ (MT6835) |
 | Architecture | ARM64 |
 | Android Base | 14 (Vendor SDK 33) |
