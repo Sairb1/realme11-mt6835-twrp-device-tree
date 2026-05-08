@@ -153,8 +153,8 @@ TW_INCLUDE_REPACKTOOLS := true
 
 # TWRP Configuration
 TW_FRAMERATE := 120
-TW_Y_OFFSET := 100
-TW_H_OFFSET := -100
+TW_Y_OFFSET := 120
+TW_H_OFFSET := -120
 TW_THEME := portrait_hdpi
 TW_DEFAULT_BRIGHTNESS := 1000
 TW_INCLUDE_FASTBOOTD := true
@@ -171,5 +171,5 @@ TW_INCLUDE_FUSE_EXFAT := true
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := en
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_DEVICE_VERSION := 14.0.0115-by-@imnotaino
-TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
+TW_DEVICE_VERSION := 14 by @imnotaino
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone24/temp"
