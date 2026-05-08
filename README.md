@@ -1,7 +1,7 @@
 # TWRP Device Tree — Realme 11 Series (ossi)
 
 > TWRP 12.1 (Android 14 base)  
-> Codename: ossi (MT6835)
+> Codename: RE5C6CL1 (MT6835)
 
 ---
 
