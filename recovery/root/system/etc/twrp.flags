@@ -3,6 +3,8 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #<mnt_point>        <type>    <device>                                                              <mnt_flags and options>
+
+# ── Boot partitions ──────────────────────────────────────────────────────────
 /boot               emmc      /dev/block/by-name/boot                                               flags=display="boot";slotselect;backup=1;flashimg=1
 /dtbo               emmc      /dev/block/by-name/dtbo                                               flags=display="dtbo";slotselect;backup=1
 /vendor_boot        emmc      /dev/block/by-name/vendor_boot                                        flags=display="vendor_boot";slotselect;backup=1;flashimg=1
@@ -10,6 +12,34 @@
 /vbmeta_system      emmc      /dev/block/by-name/vbmeta_system                                      flags=display="vbmeta_system";slotselect;backup=1;flashimg=1
 /vbmeta_vendor      emmc      /dev/block/by-name/vbmeta_vendor                                      flags=display="vbmeta_vendor";slotselect;backup=1;flashimg=1
 
+# ── Logical (dynamic) partitions ─────────────────────────────────────────────
+# BUG FIX 1 & 3: These were missing — TWRP had no idea these partitions existed
+/system             ext4      /dev/block/mapper/system                                               flags=display="system";slotselect;backup=1;flashimg=1;logical
+/vendor             ext4      /dev/block/mapper/vendor                                               flags=display="vendor";slotselect;backup=1;flashimg=1;logical
+/product            ext4      /dev/block/mapper/product                                              flags=display="product";slotselect;backup=1;flashimg=1;logical
+/system_ext         ext4      /dev/block/mapper/system_ext                                           flags=display="system_ext";slotselect;backup=1;flashimg=1;logical
+/odm                ext4      /dev/block/mapper/odm                                                  flags=display="odm";slotselect;backup=1;flashimg=1;logical
+/vendor_dlkm        ext4      /dev/block/mapper/vendor_dlkm                                          flags=display="vendor_dlkm";slotselect;flashimg=1;logical
+/odm_dlkm           ext4      /dev/block/mapper/odm_dlkm                                             flags=display="odm_dlkm";slotselect;flashimg=1;logical
+/system_dlkm        ext4      /dev/block/mapper/system_dlkm                                          flags=display="system_dlkm";slotselect;flashimg=1;logical
+
+# ── OPlus my_* logical partitions ────────────────────────────────────────────
+/my_product         ext4      /dev/block/mapper/my_product                                           flags=display="my_product";slotselect;flashimg=1;logical
+/my_stock           ext4      /dev/block/mapper/my_stock                                             flags=display="my_stock";slotselect;flashimg=1;logical
+/my_engineering     ext4      /dev/block/mapper/my_engineering                                       flags=display="my_engineering";slotselect;flashimg=1;logical
+/my_company         ext4      /dev/block/mapper/my_company                                           flags=display="my_company";slotselect;flashimg=1;logical
+/my_carrier         ext4      /dev/block/mapper/my_carrier                                           flags=display="my_carrier";slotselect;flashimg=1;logical
+/my_region          ext4      /dev/block/mapper/my_region                                            flags=display="my_region";slotselect;flashimg=1;logical
+/my_heytap          ext4      /dev/block/mapper/my_heytap                                            flags=display="my_heytap";slotselect;flashimg=1;logical
+/my_preload         ext4      /dev/block/mapper/my_preload                                           flags=display="my_preload";slotselect;flashimg=1;logical
+/my_bigball         ext4      /dev/block/mapper/my_bigball                                           flags=display="my_bigball";slotselect;flashimg=1;logical
+/my_manifest        ext4      /dev/block/mapper/my_manifest                                          flags=display="my_manifest";slotselect;flashimg=1;logical
+
+# ── Userdata ─────────────────────────────────────────────────────────────────
+# BUG FIX 2: /data was completely missing — that's why wipe data did nothing
+/data               f2fs      /dev/block/by-name/userdata                                            flags=display="data";wipeingui;formattable
+
+# ── Misc partitions ───────────────────────────────────────────────────────────
 /boot_para          emmc      /dev/block/by-name/boot_para                                          flags=display="boot_para"
 /logo               emmc      /dev/block/by-name/logo                                               flags=display="logo";backup=1
 /misc               emmc      /dev/block/by-name/misc                                               flags=display="misc";backup=1;flashimg=1
@@ -17,7 +47,6 @@
 
 /persist_image      emmc      /dev/block/by-name/persist                                            flags=display="persist";backup=1;flashimg=1
 
-#/rescue             ext4      /dev/block/by-name/rescue                                             flags=display="rescue"
 /protect_f          ext4      /dev/block/by-name/protect1                                           flags=display="protect_f"
 /protect_s          ext4      /dev/block/by-name/protect2                                           flags=display="protect_s"
 /nvdata             ext4      /dev/block/by-name/nvdata                                             flags=display="nvdata"
@@ -40,10 +69,10 @@
 /scp1               emmc      /dev/block/by-name/scp1                                               flags=display="scp1"
 /scp2               emmc      /dev/block/by-name/scp2                                               flags=display="scp2"
 /sspm_1             emmc      /dev/block/by-name/sspm_1                                             flags=display="sspm_1"
-/sspm_2             emmc      /dev/block/by-name/sspm_2                                             flags=display="sspm_1"
+/sspm_2             emmc      /dev/block/by-name/sspm_2                                             flags=display="sspm_2"
 /dpm_1              emmc      /dev/block/by-name/dpm_1                                              flags=display="dpm_1"
 /dpm_2              emmc      /dev/block/by-name/dpm_2                                              flags=display="dpm_2"
-/md1img             emmc      /dev/block/by-name/md1img                                             flags=display="md1arm7"
+/md1img             emmc      /dev/block/by-name/md1img                                             flags=display="md1img"
 /spmfw              emmc      /dev/block/by-name/spmfw                                              flags=display="spmfw"
 /pi_img             emmc      /dev/block/by-name/pi_img                                             flags=display="pi_img"
 
