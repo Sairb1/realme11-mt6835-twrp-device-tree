@@ -124,6 +124,14 @@ BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
+# Storage - required for backup/restore
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_HAS_NO_RECOVERY_PARTITION := true
+TW_BACKUP_DATA_MEDIA := true
+
 # USB Mounting
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file"
 
@@ -171,5 +179,5 @@ TW_INCLUDE_FUSE_EXFAT := true
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := en
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_DEVICE_VERSION := 14 by @imnotaino
+TW_DEVICE_VERSION := 14.0.0115
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone24/temp"
