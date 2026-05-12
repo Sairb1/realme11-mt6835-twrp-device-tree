@@ -1,3 +1,4 @@
+
 #
 # Copyright (C) 2025 The Android Open Source Project
 #
@@ -8,8 +9,6 @@ DEVICE_PATH := device/realme/RE5C6CL1
 
 # Build Hack
 BUILD_BROKEN_DUP_RULES := true
-
-# For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture
@@ -24,18 +23,16 @@ TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := cortex-a55
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 TARGET_USES_64_BIT_BINDER := true
-
 TARGET_SUPPORTS_32_BIT_APPS := true
 TARGET_SUPPORTS_64_BIT_APPS := true
-
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
-# Assertation
+# Assertion
 TARGET_OTA_ASSERT_DEVICE := RMX3780
 
 # Bootloader
@@ -45,10 +42,12 @@ TARGET_NO_BOOTLOADER := true
 # Platform
 TARGET_BOARD_PLATFORM := mt6835
 
+# API level - confirmed ro.board.first_api_level=33
+BOARD_SHIPPING_API_LEVEL := 33
+
 # Kernel
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 
 BOARD_VENDOR_CMDLINE := bootopt=64S3,32N2,64N2
@@ -85,14 +84,18 @@ BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
-# Partitions
-BOARD_FLASH_BLOCK_SIZE := 262144
-BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
+# Partitions - all sizes verified from device
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864        # sdc36: 65536 blocks x 1024
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864 # sdc37: 65536 blocks x 1024
+BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608   # sdc38: 8192 blocks x 1024
+BOARD_DTBOIMAGE_PARTITION_SIZE := 8388608         # sdc39: 8192 blocks x 1024
 
-BOARD_SUPER_PARTITION_SIZE := 9126805504
+# Super - verified: blockdev --getsize64 /dev/block/by-name/super = 9663676416
+BOARD_SUPER_PARTITION_SIZE := 9663676416
 BOARD_SUPER_PARTITION_GROUPS := oplus_dynamic_partitions
-BOARD_OPLUS_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext product vendor vendor_dlkm odm odm_dlkm
-BOARD_OPLUS_DYNAMIC_PARTITIONS_SIZE := 9122611200 # (BOARD_SUPER_PARTITION_SIZE - 4194304) 4MiB
+# Full list from ro.product.ab_ota_partitions
+BOARD_OPLUS_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext product vendor vendor_dlkm odm odm_dlkm system_dlkm my_product my_stock my_engineering my_company my_carrier my_region my_heytap my_preload my_bigball my_manifest
+BOARD_OPLUS_DYNAMIC_PARTITIONS_SIZE := 9659482112 # super - 4MiB
 
 BOARD_PARTITION_LIST := $(call to-upper, $(BOARD_OPLUS_DYNAMIC_PARTITIONS_PARTITION_LIST))
 $(foreach p, $(BOARD_PARTITION_LIST), $(eval BOARD_$(p)IMAGE_FILE_SYSTEM_TYPE := erofs))
@@ -108,10 +111,10 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # System as root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
 
-# Display
+# Display - verified: wm size=1080x2400, wm density=480
 TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
-TARGET_SCREEN_DENSITY := 320
+TARGET_SCREEN_DENSITY := 480
 
 # Recovery
 TARGET_NO_RECOVERY := true
@@ -124,7 +127,7 @@ BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
-# Storage - required for backup/restore
+# Storage
 TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
@@ -132,10 +135,8 @@ TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_HAS_NO_RECOVERY_PARTITION := true
 TW_BACKUP_DATA_MEDIA := true
 
-# USB Mounting
+# USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file"
-
-# USB OTG
 TW_USB_STORAGE := false
 
 # Debug
@@ -156,21 +157,19 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 
 # Tools
 TW_INCLUDE_RESETPROP := true
-TW_INCLUDE_LIBRESETPROP :=true
+TW_INCLUDE_LIBRESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
 
-# TWRP Configuration
+# TWRP
 TW_FRAMERATE := 120
-TW_Y_OFFSET := 120
-TW_H_OFFSET := -120
+TW_Y_OFFSET := 105
+TW_H_OFFSET := -105
+TW_STATUS_ICONS_ALIGN := center
+TW_STATUSBAR_RIGHT_PADDING := 40
+TW_STATUSBAR_LEFT_PADDING := 40
 TW_THEME := portrait_hdpi
 TW_DEFAULT_BRIGHTNESS := 1000
 TW_INCLUDE_FASTBOOTD := true
-TARGET_USES_LOGD := true
-TWRP_INCLUDE_LOGCAT := true
-TW_INCLUDE_RESETPROP := true
-TW_INCLUDE_REPACKTOOLS := true
-TW_INCLUDE_LIBRESETPROP := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_INCLUDE_NTFS_3G := true
@@ -181,3 +180,10 @@ TW_DEFAULT_LANGUAGE := en
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_DEVICE_VERSION := 14.0.0115
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone24/temp"
+TW_NO_CPU_TEMP := false
+TW_INCLUDE_SU := true
+
+# Haptics
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
+TW_SUPPORT_INPUT_AIDL_HAPTICS_INSTALL := true
