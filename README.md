@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🔧 TWRP Device Tree — Realme 11 Series (ossi)
+<img width="1774" height="887" alt="ChatGPT Image May 18, 2026, 02_33_42 PM" src="https://github.com/user-attachments/assets/cdb71fb9-57ba-49ee-8568-96668bae7185" />
 
 ### TWRP 12.1 • Android 14 Base • MT6835 Platform
 
