@@ -1,0 +1,30 @@
+# Start Daemon (Registry directories should already be present)
+# A15 mcRegistry: updated drbin list from A15 stock vendor_boot vendor/app/mcRegistry/
+# Source: E:\Mio\vendor_boot\vendor_boot\ramdisk\vendor\app\mcRegistry\
+# Binary path stays /system/bin/mcDriverDaemon (TWRP builds this from Trustonic source)
+service mobicore /system/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/persist/mcRegistry \
+	-r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/05120000000000000000000000000001.drbin \
+	-r /vendor/app/mcRegistry/06090000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/07150000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/07170000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin \
+	-r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
+	-r /vendor/app/mcRegistry/08050000000000000000000000003419.drbin
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+# A15 mcRegistry drbin key:
+# 020f0000000000000000000000000000.drbin : utils
+# 05120000000000000000000000000001.drbin : sec (v1 variant)
+# 06090000000000000000000000000000.drbin : drm keyinstall
+# 07150000000000000000000000000000.drbin : (new A15 TA)
+# 07170000000000000000000000000000.drbin : (new A15 TA)
+# 40188311faf343488db888ad39496f9a.drbin : widevine
+# 5020170115e016302017012521300000.drbin : drm_hdcp_common
+# 08050000000000000000000000003419.drbin : (new A15 TA)
+#
+# .tabin files (08030000, 08040000, 08110000, abcd270e, e97c270e) are
+# loaded by the TEE OS itself from persist/mcRegistry, not via -r flags
