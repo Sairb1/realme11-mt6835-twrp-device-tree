@@ -2,6 +2,7 @@
 
 ## Device Information
 - **Device**: Realme 11 5G
+- **Tested Version**: RMX378X_15.0.0.1800(EX01)
 - **Codename**: chongqing (formerly RE5C6CL1)
 - **Model**: RMX3780 / RMX3781 / RMX3782 / RMX3783 / RMX3785
 - **SoC**: MediaTek Dimensity 6100+ (MT6835)
@@ -118,12 +119,12 @@ device/realme/chongqing/
 make installclean
 source build/envsetup.sh
 lunch twrp_chongqing-eng
-mka recoveryimage
+mka vendorbootimage -j$(nproc)
 ```
 
 ## Flashing
 ```bash
-fastboot flash vendor_boot out/target/product/chongqing/vendor_boot.img
+fastboot flash vendor_boot vendor_boot.img
 ```
 
 ---
